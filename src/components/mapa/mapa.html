@@ -1,4 +1,22 @@
 <!-- Generated template for the MapaComponent component -->
 <div>
-  {{text}}
+    
+  <ion-grid>
+   
+    <ion-row>
+      <ion-col col-8>
+         
+      </ion-col>
+      <ion-col col-2>
+        
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button color="light" (click)="obterPosicaoAtual()">   <ion-icon name="locate"></ion-icon></button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+    <div #map id="map" class="map"  ion-long-press [interval]="400" (onPressing)="mapaPressionado()" ></div>
+  
+   
 </div>
