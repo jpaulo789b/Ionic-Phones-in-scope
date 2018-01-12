@@ -10,22 +10,35 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 import { HttpModule } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LongPressModule } from 'ionic-long-press';
-import { AngularFireModule } from 'angularfire2/index';
-import { FirebaseConfig } from './shared/firebase.config'
+// import { Databaseservice } from "../providers/databaseservice/databaseservice"
+import { Databaseservice } from '../providers/databaseservice/databaseservice';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyDaw--6eoBfkkOIqrmZVoDEo-NGpmnYW_Y",
+  authDomain: "apenastestes-e598b.firebaseapp.com",
+  databaseURL: "https://apenastestes-e598b.firebaseio.com",
+  projectId: "apenastestes-e598b",
+  storageBucket: "apenastestes-e598b.appspot.com",
+  messagingSenderId: "956706882458"
+};
+
+
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    MapaComponent
-  ],
+    MapaComponent],
   imports: [
     BrowserModule,
     HttpModule,
     LongPressModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(FirebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,11 +47,15 @@ import { FirebaseConfig } from './shared/firebase.config'
     MapaComponent
   ],
   providers: [
+    
     StatusBar,
     SplashScreen,
     MapaComponent,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    AngularFireDatabase,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Databaseservice
+    
   ]
 })
-export class AppModule {}
+export class AppModule { }
